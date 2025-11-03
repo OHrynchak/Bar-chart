@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <title>CSV Bar Chart</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 40px;
+      text-align: center;
+    }
+    img {
+      margin-top: 20px;
+      border: 1px solid #ddd;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .links {
+      margin-top: 30px;
+    }
+    a {
+      display: inline-block;
+      margin: 5px;
+      padding: 8px 15px;
+      background: #eef;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #333;
+    }
+    a:hover {
+      background: #dde;
+    }
+  </style>
+</head>
+<body>
+  <h1>Сума значень по областях</h1>
+  <p>Дані з файлу <code>input_data.csv</code></p>
+
+  <img src="{% url 'chart_png' %}" alt="Bar chart from CSV">
+
+  <div class="links">
+    <h3>Переглянути по районах:</h3>
+    
+    {% for region in regions %}
+      <a href="{% url 'region_chart' region %}">{{ region }}</a>
+    {% endfor %}
+  </div>
+</body>
+</html>
