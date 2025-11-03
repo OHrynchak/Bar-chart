@@ -25,7 +25,9 @@ SECRET_KEY = '***REMOVED***'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['https://bar-chart-sbrm.onrender.com']
+ALLOWED_HOSTS = ['bar-chart-sbrm.onrender.com',
+                 '127.0.0.1', 
+                 'localhost']
 
 
 # Application definition
