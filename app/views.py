@@ -11,16 +11,16 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 def index(request):
     """
-    Головна сторінка додатку.
+    The main page of the application.
     
-    Зчитує дані з CSV, отримує список унікальних областей і передає їх 
-    до шаблону для відображення посилань або кнопок для навігації.
+    Reads data from the CSV, retrieves a list of unique regions, and passes them
+    to the template to display links or buttons for navigation.
 
     Args:
-        request: Об'єкт HttpRequest.
+        request: The HttpRequest object.
 
     Returns:
-        HttpResponse: Відповідь з рендерингом шаблону 'chartapp/index.html'.
+        HttpResponse: A response rendering the 'chartapp/index.html' template.
     """
     csv_path = os.path.join(BASE_DIR, "app", "static", "chartapp", "data", "input_data.csv")
     df = pd.read_csv(csv_path, encoding='utf-8-sig')
@@ -29,17 +29,17 @@ def index(request):
 
 def chart_png(request):
     """
-    Генерує загальний стовпчастий графік (bar chart) на основі суми 'Значення'
-    по всіх 'Областях' з файлу input_data.csv.
+    Generates a general bar chart based on the sum of 'Значення' (Value) 
+    across all 'Область' (Regions) from the input_data.csv file.
 
-    Перевіряє наявність файлу та коректність структури (стовпці 'Область', 'Місто/Район', 'Значення').
+    Checks for file existence and correct structure (columns 'Область', 'Місто/Район', 'Значення').
     
     Args:
-        request: Об'єкт HttpRequest.
+        request: The HttpRequest object.
 
     Returns:
-        HttpResponse: Відповідь з зображенням PNG (content_type='image/png').
-        HttpResponseBadRequest: У разі відсутності файлу або неправильної структури CSV.
+        HttpResponse: A response with the PNG image (content_type='image/png').
+        HttpResponseBadRequest: If the file is missing or the CSV structure is incorrect.
     """
     csv_path = os.path.join(BASE_DIR, "app", "static", "chartapp", "data", "input_data.csv")
     if not os.path.exists(csv_path):
@@ -69,16 +69,16 @@ def chart_png(request):
 
 def region_chart(request, region_name):
     """
-    Генерує стовпчастий графік (bar chart) для конкретної області, 
-    деталізуючи 'Значення' по 'Місто/Район'.
+    Generates a bar chart for a specific region, 
+    detailing 'Значення' (Value) by 'Місто/Район' (City/District).
 
     Args:
-        request: Об'єкт HttpRequest.
-        region_name (str): Назва області, для якої генерується графік (отримано з URL).
+        request: The HttpRequest object.
+        region_name (str): The name of the region for which the chart is generated (obtained from the URL).
 
     Returns:
-        HttpResponse: Відповідь з зображенням PNG (content_type='image/png').
-        HttpResponseBadRequest: Якщо вказаної області немає в даних.
+        HttpResponse: A response with the PNG image (content_type='image/png').
+        HttpResponseBadRequest: If the specified region is not found in the data.
     """
     csv_path = os.path.join(BASE_DIR, "app", "static", "chartapp", "data", "input_data.csv")
     df = pd.read_csv(csv_path, encoding='utf-8-sig')

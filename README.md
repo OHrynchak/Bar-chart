@@ -1,77 +1,77 @@
-## Додаток для Візуалізації CSV Даних (CSV Bar Chart App)
+## CSV Data Visualization Application (CSV Bar Chart App)
 
-Цей Django-додаток призначений для читання структурованих CSV-файлів, групування даних за регіонами та генерації стовпчастих діаграм (Bar Charts) за допомогою бібліотек Pandas та Matplotlib. Діаграми генеруються динамічно та віддаються користувачеві як PNG-зображення.
+This Django application is designed to read structured CSV files, group data by regions, and generate Bar Charts using the Pandas and Matplotlib libraries. The charts are dynamically generated and served to the user as PNG images.
 
-### Ключові технології
-* Backend: Python, Django
+### Key Technologies
+* **Backend:** Python, Django
 
-* Обробка даних: Pandas
+* **Data Processing:** Pandas
 
-* Візуалізація: Matplotlib (Agg backend)
+* **Visualization:** Matplotlib (Agg backend)
 
-### Встановлення та Запуск
+### Installation and Setup
 
-**1.Вимоги**
+**1.Requirements**
 
-Переконайтеся, що у вас встановлено Python та Git.
+Ensure you have Python and Git installed.
 
-**2.Клонування та перехід у директорію**
+**2.Clone and Change Directory**
 
 ```bash
 git clone https://github.com/OHrynchak/Bar-chart.git
-cd <назва_папки_проєкту>
+cd <project_folder_name>
 ```
 
-**3.Створення та активація віртуального середовища**
+**3.Create and Activate Virtual Environment**
 
-Для ізоляції залежностей створіть та активуйте віртуальне середовище:
+To isolate dependencies, create and activate a virtual environment:
 ```bash
-# Створення віртуального середовища
+# Create virtual environment
 python -m venv venv
 
-# Активація середовища
-# Для Windows PowerShell:
+# Activate environment
+# For Windows PowerShell:
 .\venv\Scripts\Activate.ps1
 
-# Для macOS/Linux або Git Bash:
+# For macOS/Linux or Git Bash:
 source venv/bin/activate
 ```
 
-**4.Встановлення залежностей**
+**4.Install Dependencies**
 
-Після активації встановіть необхідні бібліотеки (переконайтеся, що файл `requirements.txt` містить `django`, `pandas`, `matplotlib`):
+After activation, install the necessary libraries (ensure that the `requirements.txt` file contains `django`, `pandas`, `matplotlib`):
 
 ```bash
 pip install -r requirements.txt
 ```
 
-(*Якщо файлу `requirements.txt` ще немає, встановіть вручну: `pip install django pandas matplotlib`*)
+(*If the `requirements.txt` file is missing, install manually: `pip install django pandas matplotlib`*)
 
-**5.Структура Даних (CSV)**
+**5.Data Structure (CSV)**
 
-Додаток очікує, що в ньому буде присутній файл з даними:
+The application expects a data file to be present:
 
-* Шлях до файлу: `app/static/chartapp/data/input_data.csv`
+* File Path: `app/static/chartapp/data/input_data.csv`
 
-* Обов'язкові стовпці:
+* Required Columns:
 
-    + `Область` (для групування верхнього рівня)
+    + `Область` (Region) - for top-level grouping
 
-    + `Місто/Район` (для деталізації)
+    + `Місто/Район` (City/District) - for detailed breakdown
 
-    + `Значення` (числове значення для візуалізації)
+    + `Значення` (Value) - the numeric value for visualization
 
-**6.Запуск Django-сервера**
+**6.Run Django Server**
 
-Виконайте команду запуску сервера у кореневій директорії:
+Execute the server startup command in the root directory:
 
 ```bash
 python manage.py runserver
 ```
 
-### Використання
-Відкрийте у браузері адресу: `http://127.0.0.1:8000/`.
+### Usage
+pen the following address in your browser: `http://127.0.0.1:8000/`.
 
-2. **Головна сторінка:** Відображає загальну діаграму, що підсумовує `Значення` по всіх областях. Також містить посилання на детальні діаграми областей.
+2. **Main Page:** Displays a general chart summarizing the `Значення` (Value) across all regions. It also provides links to detailed regional charts.
 
-3. **Детальна діаграма:** Перехід за посиланням на конкретну область покаже діаграму, де `Значення` підсумовані та деталізовані по `Місто/Район`.
+3. **Detailed Chart:** Clicking the link for a specific region will display a chart where the `Значення` (Value) is summarized and detailed by `Місто/Район`(City/District).
